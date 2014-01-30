@@ -24,7 +24,7 @@ public class Field extends PointModel {
     @Override
     public void onTick(DataFrame last, DataFrame current) {
         double d = this.content.onTick(last, current) ;
-        if(d != lastfood) {
+        if(d != lastfood && d != 0) {
             this.saveDouble("avgFood", d/index++);
             lastfood = d;
             addEventToAll(current, new Event("cropReady", Event.Type.DOUBLE,

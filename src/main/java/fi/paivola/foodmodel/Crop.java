@@ -90,8 +90,9 @@ public abstract class Crop extends Edible {
             resetCrop();
 
         if(currentGrowTime == growTime) {
-            currentStoredFood += currentIndexMultiplier /
-                    growTime * getArea() * maxYield * (Math.random() / 10 + 0.5) * 1000;
+            double addfood = currentIndexMultiplier /
+                    growTime * getArea() * maxYield * (Math.random() / 10 + 0.5) * 1000 * 15;
+            currentStoredFood += addfood;
             resetCrop();
         }
         else {
@@ -100,7 +101,6 @@ public abstract class Crop extends Edible {
                 this.getTemperatureIndex(last) * this.getSunshineIndex(last) * 
                 this.getPHIndex(last);
         }
-        /* XXX: constant multiplier */
         return currentStoredFood;
     }
 
@@ -176,6 +176,6 @@ public abstract class Crop extends Edible {
                 sm.settings.get(s + "Lämpö").getValue());
         this.temperatureDistribution = new Distribution(
                 temperatureOptimal * 0.5, temperatureOptimal,
-                temperatureOptimal * 1.5);
+                Double.MAX_VALUE);
     }
 }
