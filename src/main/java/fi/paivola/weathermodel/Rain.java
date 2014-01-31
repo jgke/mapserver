@@ -21,9 +21,10 @@ public class Rain {
         double r = 0;
         for(int i = 0; i < 7; i++) {
             if(Math.random() * 100 < rainProb[month])
-                r += rainAvrg[month] / date.getActualMaximum(Calendar.DAY_OF_MONTH);
+                r += rainAvrg[month] / date.getActualMaximum(Calendar.DAY_OF_MONTH)
+                    + rain / 7;
         }
-        if(r + rain <= 0)
+        if(r <= 0)
             return 0;
         return r + rain;
     }
